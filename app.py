@@ -21,7 +21,11 @@ data = None
 
 def load_data(file_path):
     global data
-    data = pd.read_excel(file_path)
+    try:
+        data = pd.read_excel(file_path)
+    except Exception as e:
+        print(f"Error loading data: {e}")
+        data = None
 
 def calculate_improvement(data):
     improvements = []
@@ -158,6 +162,8 @@ def find_student_score_distribution(data, student):
     return student_data
 
 def analyze_data(data, question):
+    if data is None:
+        return "데이터를 로드하지 못했습니다. 파일을 다시 업로드해 주세요.", None
     img_url = None
     data_str = data.to_csv(index=False)
 
