@@ -10,7 +10,9 @@ import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
 # 기본적으로 설치된 폰트를 사용합니다.
+fontprop = fm.FontProperties(fname=fm.findSystemFonts(fontpaths=None, fontext='ttf')[0])
 plt.rc('font', family='DejaVu Sans')
+
 
 # 환경 변수 로드
 load_dotenv()
