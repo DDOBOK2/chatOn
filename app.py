@@ -9,10 +9,8 @@ from langchain.chat_models import ChatOpenAI
 import matplotlib.pyplot as plt
 import matplotlib.font_manager as fm
 
-# 한글 폰트 설정
-font_path = 'C:/Windows/Fonts/malgun.ttf'  # Windows에서 한글 폰트 경로
-fontprop = fm.FontProperties(fname=font_path, size=10)
-plt.rc('font', family=fontprop.get_name())
+# 기본적으로 설치된 폰트를 사용합니다.
+plt.rc('font', family='DejaVu Sans')
 
 # 환경 변수 로드
 load_dotenv()
