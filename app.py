@@ -1,5 +1,6 @@
 import os
 import openai
+from openai.error import Timeout
 import pandas as pd
 from flask import Flask, request, render_template, redirect, url_for
 from dotenv import load_dotenv
@@ -104,7 +105,16 @@ def get_gpt4_response(data_str, question, initial_response):
     prompt = PromptTemplate(template=template, input_variables=["data", "question", "initial_response"])
     chain = LLMChain(llm=llm, prompt=prompt)
 
-    return chain.run(data=data_str, question=question, initial_response=initial_response)
+    try:
+        response = chain.run(data=data_str, question=question, initial_response=initial_response)
+    except openai.error.OpenAIError as e:
+        print(f"OpenAI API error: {e}")
+        response = "An error occurred with the OpenAI API. Please try again later."
+    except Exception as e:
+        print(f"An unexpected error occurred: {e}")
+        response = "An unexpected error occurred. Please try again later."
+
+    return response
 
 def find_highest_and_lowest_scores(data):
     highest_score = data['점수'].max()
