@@ -1,0 +1,6 @@
+langchain==0.0.171
+openai
+pandas
+matplotlib
+python-dotenv
+flask

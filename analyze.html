@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>chat온(On)에게 물어보세요</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+    <div class="container">
+        <h1>chat온(On)에게 물어보세요</h1>
+        <form method="POST">
+            <input type="text" name="question" placeholder="chat온(On)에게 물어보세요(예, 보충학습이 필요한 학생은?)">
+            <button type="submit">질문하기</button>
+        </form>
+        {% if question %}
+        <div class="result">
+            <h2>질문:</h2>
+            <p>{{ question }}</p>
+            <h2>답변:</h2>
+            <p>{{ answer }}</p>
+            {% if img_url %}
+            <img src="{{ img_url }}" alt="Improvement Chart">
+            {% endif %}
+        </div>
+        {% endif %}
+    </div>
+</body>
+</html>
